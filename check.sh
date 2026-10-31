@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+cp#!/usr/bin/env bash
 fail=0
 chk() {
   if grep -niE "$2" in.html in.css in.js; then

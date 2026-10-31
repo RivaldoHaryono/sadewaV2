@@ -1,3 +1,6 @@
+---
+inclusion: always
+---
 # ATURAN UI SADEWA ELEKTRONIK
 
 ## A. IDENTITAS VISUAL

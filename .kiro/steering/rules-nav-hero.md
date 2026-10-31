@@ -1,3 +1,6 @@
+---
+inclusion: always
+---
 ATURAN NAVBAR DAN HERO SADEWA ELEKTRONIK
 Lanjutan dari rules-ui.md. Nomor melanjutkan 30.
 F. NAVBAR

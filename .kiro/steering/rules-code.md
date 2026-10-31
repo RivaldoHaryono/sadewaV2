@@ -1,3 +1,6 @@
+---
+inclusion: always
+---
 # ATURAN KODE SADEWA ELEKTRONIK
 HTML, CSS, JavaScript, Node.js, dan Firebase
 
