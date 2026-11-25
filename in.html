@@ -26,35 +26,6 @@
       } catch (e) {}
     </script>
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": ["ElectronicsStore", "HardwareStore"],
-        "description": "Peralatan rumah tangga, peralatan listrik, dan peralatan pertukangan",
-        "name": "Sadewa Elektronik",
-        "telephone": "+6285872189172",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Cidahu",
-          "addressRegion": "Jawa Barat",
-          "addressCountry": "ID"
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday"
-            ],
-            "opens": "08:00",
-            "closes": "20:00"
-          }
-        ]
-      }
     </script>
   </head>
   <body>
@@ -68,8 +39,7 @@
           >SADEWA</a
         >
         <nav aria-label="Navigasi utama" id="main-nav">
-          <a href="#kategori">Kategori</a><a href="#produk">Produk</a
-          ><a href="#toko">Toko</a><a href="#audit">Audit</a
+          <a href="#kategori">Kategori</a><a href="#produk">Produk</
           ><a href="https://wa.me/6285872189172">WhatsApp</a>
         </nav>
         <div class="hdr-actions">
@@ -119,14 +89,6 @@
         </div>
       </div>
     </header>
-    <div id="sub-header" aria-hidden="true" hidden>
-      <span id="sub-title">Sadewa Elektronik</span>
-      <a
-        class="btn sub-cta"
-        href="https://wa.me/6285872189172?text=Halo%20Sadewa%2C%20saya%20mau%20tanya%20stok"
-        >Chat WhatsApp</a
-      >
-    </div>
     <div
       id="mob-menu"
       role="dialog"
@@ -310,30 +272,82 @@
         </div>
       </section>
 
-      <section id="toko" data-a>
-        <div class="w">
-          <h2>Toko nyata, bisa didatangi.</h2>
-          <div class="trust">
-            <div>
+            <section id="toko" data-a class="store-visit-section">
+              
+        <div class="store-visit-wrap">
+          <img class="store-visit-bg" src="img/toko.jpeg" alt="Foto toko tampak depan" loading="lazy" width="1080" height="608">
+          <div class="store-visit-overlay" aria-hidden="true"></div>
+          <div class="store-visit-body">
+            <div class="store-visit-content">
+              <span class="store-visit-badge">BUKA SETIAP HARI</span>
+              <h2 class="store-visit-title">Toko nyata, bisa didatangi.</h2>
+              <p class="store-visit-sub">Datang langsung, lihat barangnya, bawa pulang hari ini.</p>
+              <div class="store-visit-actions">
+                <a class="store-visit-btn-primary" href="https://maps.app.goo.gl/Fh5ng6r7iDe2ADpS8" target="_blank" rel="noopener">Petunjuk Arah</a>
+                <a class="store-visit-btn-outline" href="https://wa.me/6285872189172?text=Halo%20Sadewa%2C%20saya%20mau%20tanya%20stok" target="_blank" rel="noopener">Chat WhatsApp</a>
+              </div>
+            </div>
+            <div class="store-visit-cards">
+              <div class="store-visit-card">
+                <h3>Alamat lengkap</h3>
+                <p>Toko Sadewa Elektronik<br>Jayabakti, Kec. Cidahu, Kab. Sukabumi, Jawa Barat</p>
+              </div>
+              <div class="store-visit-card">
+                <h3>Buka setiap hari</h3>
+                <p>08.00 sampai 20.00. Pesan lewat WhatsApp, ambil di toko atau minta diantar.</p>
+              </div>
+              <div class="store-visit-card">
+                <h3>Garansi tertulis</h3>
+                <p>Sebutkan lama garansi per produk. Tampilkan ulasan asli dari Google Maps, bukan angka tanpa sumber.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+     
+        <div class="sv-wrap w">
+          <div class="sv-top">
+            <div class="sv-text">
+              <span class="sv-badge">BUKA SETIAP HARI</span>
+              <h2 class="store-visit-title">Toko nyata, bisa didatangi.</h2>
+              <p class="store-visit-sub">Datang langsung, lihat barangnya, bawa pulang hari ini.</p>
+              <div class="store-visit-actions">
+                <a class="store-visit-btn-primary" href="https://maps.app.goo.gl/Fh5ng6r7iDe2ADpS8" target="_blank" rel="noopener">Petunjuk Arah</a>
+                <a class="store-visit-btn-outline" href="https://wa.me/6285872189172?text=Halo%20Sadewa%2C%20saya%20mau%20tanya%20stok" target="_blank" rel="noopener">Chat WhatsApp</a>
+              </div>
+            </div>
+            <div class="sv-gallery" id="sv-gallery" aria-label="Galeri foto toko">
+              <div class="sv-photo-wrap" aria-live="polite" aria-atomic="true">
+                <img class="sv-photo sv-photo--active" src="img/toko.jpeg" alt="Foto toko tampak depan" width="1080" height="608">
+                <img class="sv-photo" src="img/toko2.jpeg" alt="Foto toko tampak depan 2" loading="lazy" width="1080" height="608">
+                <img class="sv-photo" src="img/toko3.jpeg" alt="Foto toko tampak samping" loading="lazy" width="1080" height="608">
+                <img class="sv-photo" src="img/toko.4.jpeg" alt="Foto toko bagian dalam" loading="lazy" width="1080" height="608">
+              </div>
+              <div class="sv-pagination" role="group" aria-label="Navigasi foto">
+                <span class="sv-pg-label">Foto toko</span>
+                <div class="sv-pg-btns">
+                  <button class="sv-pg-btn sv-pg-btn--active" data-idx="0" aria-label="Lihat foto 1" aria-current="true">1</button>
+                  <button class="sv-pg-btn" data-idx="1" aria-label="Lihat foto 2">2</button>
+                  <button class="sv-pg-btn" data-idx="2" aria-label="Lihat foto 3">3</button>
+                  <button class="sv-pg-btn" data-idx="3" aria-label="Lihat foto 4">4</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sv-info">
+            <div class="sv-info-item">
+              <svg class="sv-info-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2a6 6 0 0 1 6 6c0 4-6 10-6 10S4 12 4 8a6 6 0 0 1 6-6z"/><circle cx="10" cy="8" r="2"/></svg>
               <h3>Alamat lengkap</h3>
-              <p>
-                Isi dengan alamat jalan, patokan, dan foto bangunan toko.
-                Sekarang situs hanya menulis "Bojong-pari".
-              </p>
+              <p>Toko Sadewa Elektronik<br>Jayabakti, Kec. Cidahu, Kab. Sukabumi, Jawa Barat</p>
             </div>
-            <div>
+            <div class="sv-info-item">
+              <svg class="sv-info-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg>
               <h3>Buka setiap hari</h3>
-              <p>
-                08.00 sampai 20.00. Pesan lewat WhatsApp, ambil di toko atau
-                minta diantar.
-              </p>
+              <p>08.00 sampai 20.00. Pesan lewat WhatsApp, ambil di toko atau minta diantar.</p>
             </div>
-            <div>
+            <div class="sv-info-item">
+              <svg class="sv-info-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>
               <h3>Garansi tertulis</h3>
-              <p>
-                Sebutkan lama garansi per produk. Tampilkan ulasan asli dari
-                Google Maps, bukan angka tanpa sumber.
-              </p>
+              <p>Sebutkan lama garansi per produk. Tampilkan ulasan asli dari Google Maps, bukan angka tanpa sumber.</p>
             </div>
           </div>
         </div>
@@ -348,7 +362,6 @@
           <div class="soc" id="soc"></div>
         </div>
       </section>
-      <section id="audit" data-a>
         <div class="w">
     <footer>
       <div class="w">

@@ -154,7 +154,7 @@ function render() {
     ? part
         .map(
           ([d, i]) =>
-            `<article class="card"><div class="ph"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="${ICON[d[3]]}"/></svg></div><small class="sub">${d[5]}</small><h3>${d[0]}</h3><div class="price">${rp(d[2])}</div><button class="btn" data-i="${i}">Lihat detail dan live view</button></article>`,
+            `<article class="card"><div class="ph"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="${ICON[d[3]]}"/></svg></div><small class="sub">${d[5]}</small><h3>${d[0]}</h3><div class="price">${rp(d[2])}</div><button class="btn" data-i="${i}">Lihat detail</button></article>`,
         )
         .join("")
     : "<p>Produk tidak ditemukan. Coba kata kunci lain atau tanya lewat chat.</p>";
@@ -882,10 +882,9 @@ addEventListener("resize", () => {
   }, 150);
 });
 draw();
-/* ===== HEADER: scroll, sub-header, mobile menu ===== */
+/* ===== HEADER: scroll dan mobile menu ===== */
 (function () {
   const hdr = document.getElementById("site-header");
-  const subHdr = document.getElementById("sub-header");
   const mobBtn = document.getElementById("mob-menu-btn");
   const mobMenu = document.getElementById("mob-menu");
   const mobClose = document.getElementById("mob-close-btn");
@@ -900,7 +899,7 @@ draw();
     ).filter(function (el) { return !el.disabled; });
   }
 
-  /* Hero tinggi: sub-header muncul setelah scroll melewati 80svh */
+
   function onScroll() {
     const scrollY = window.scrollY || window.pageYOffset;
     /* Border bawah navbar */
@@ -909,84 +908,88 @@ draw();
     } else {
       hdr.classList.remove("scrolled");
     }
-    /* Sub-header muncul setelah ~80% viewport */
-    const threshold = Math.min(
-      window.innerHeight * 0.8,
-      document.getElementById("produk")
-        ? document.getElementById("produk").offsetTop - 120
-        : 500
-    );
-    if (scrollY > threshold) {
-      subHdr.hidden = false;
-      subHdr.removeAttribute("aria-hidden");
-      requestAnimationFrame(function () { subHdr.classList.add("visible"); });
-    } else {
-      subHdr.classList.remove("visible");
-      subHdr.setAttribute("aria-hidden", "true");
-      /* sembunyikan setelah transisi selesai */
-      setTimeout(function () {
-        if (!subHdr.classList.contains("visible")) subHdr.hidden = true;
-      }, 250);
-    }
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll(); /* jalankan sekali saat load */
-
-  /* Mobile menu: buka */
-  function openMenu() {
-    mobMenu.hidden = false;
-    document.body.style.overflow = "hidden";
-    mobBtn.setAttribute("aria-expanded", "true");
-    if (hamIcon) hamIcon.innerHTML = ICON_CLOSE;
-    /* fokus ke tombol tutup setelah transisi */
-    requestAnimationFrame(function () {
-      setTimeout(function () { if (mobClose) mobClose.focus(); }, 50);
-    });
-  }
-
-  /* Mobile menu: tutup */
-  function closeMenu() {
-    mobMenu.hidden = true;
-    document.body.style.overflow = "";
-    mobBtn.setAttribute("aria-expanded", "false");
-    if (hamIcon) hamIcon.innerHTML = ICON_HAM;
-    mobBtn.focus();
-  }
-
-  if (mobBtn) mobBtn.addEventListener("click", openMenu);
-  if (mobClose) mobClose.addEventListener("click", closeMenu);
-
-  /* Tutup dengan Escape */
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !mobMenu.hidden) closeMenu();
-  });
-
-  /* Tutup saat klik link di dalam mob-menu */
-  if (mobMenu) {
-    mobMenu.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", closeMenu);
-    });
-  }
-
-  /* Focus trap di dalam mob-menu */
-  if (mobMenu) {
-    mobMenu.addEventListener("keydown", function (e) {
-      if (e.key !== "Tab") return;
-      var focusable = getFocusable();
-      if (!focusable.length) return;
-      var first = focusable[0];
-      var last = focusable[focusable.length - 1];
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        }
-      } else {
-        if (document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    });
   }
 })();
+
+/* ===== GALERI TOKO ===== */
+(function(){
+  var g=document.getElementById("sv-gallery");
+  if(!g)return;
+  var photos=Array.from(g.querySelectorAll(".sv-photo"));
+  var btns=Array.from(g.querySelectorAll(".sv-pg-btn"));
+  var cur=0;
+  var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  function show(n){
+    if(n===cur)return;
+    photos[cur].classList.remove("sv-photo--active");
+    btns[cur].classList.remove("sv-pg-btn--active");
+    btns[cur].removeAttribute("aria-current");
+    cur=n;
+    photos[cur].classList.add("sv-photo--active");
+    btns[cur].classList.add("sv-pg-btn--active");
+    btns[cur].setAttribute("aria-current","true");
+  }
+  btns.forEach(function(b,i){
+    b.addEventListener("click",function(){show(i);});
+  });
+  g.addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight"||e.key==="ArrowLeft"){
+      e.preventDefault();
+      var n=e.key==="ArrowRight"?(cur+1)%photos.length:(cur-1+photos.length)%photos.length;
+      show(n);
+      btns[cur].focus();
+    }
+  });
+  var tx=0;
+  g.addEventListener("touchstart",function(e){tx=e.touches[0].clientX;},{passive:true});
+  g.addEventListener("touchend",function(e){
+    var dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>44){
+      var n=dx<0?(cur+1)%photos.length:(cur-1+photos.length)%photos.length;
+      show(n);
+    }
+  },{passive:true});
+})();
+
+/* ===== HERO BACKGROUND PAGINATION ===== */
+(function() {
+  var wrap = document.querySelector(".store-visit-wrap");
+  if (!wrap) return;
+  
+  var photos = Array.from(wrap.querySelectorAll(".store-visit-bg"));
+  var dots = Array.from(wrap.querySelectorAll(".store-visit-pg-dot"));
+  
+  if (photos.length <= 1 || dots.length === 0) return;
+  
+  var currentIndex = 0;
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  
+  function showPhoto(index) {
+    if (index === currentIndex) return;
+    
+    // Remove active dari foto dan dot sebelumnya
+    photos[currentIndex].classList.remove("store-visit-bg--active");
+    dots[currentIndex].classList.remove("store-visit-pg-dot--active");
+    dots[currentIndex].removeAttribute("aria-current");
+    
+    // Set active ke foto dan dot baru
+    currentIndex = index;
+    photos[currentIndex].classList.add("store-visit-bg--active");
+    dots[currentIndex].classList.add("store-visit-pg-dot--active");
+    dots[currentIndex].setAttribute("aria-current", "true");
+  }
+  
+  // Click handler untuk dots
+  dots.forEach(function(dot, idx) {
+    dot.onclick = function() {
+      showPhoto(idx);
+    };
+  });
+  
+  // Auto-advance setiap 5 detik (optional)
+  setInterval(function() {
+    var nextIndex = (currentIndex + 1) % photos.length;
+    showPhoto(nextIndex);
+  }, 5000);
+})();
+

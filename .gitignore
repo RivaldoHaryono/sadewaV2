@@ -1,0 +1,32 @@
+# Server runtime files
+server.log
+server.pid
+*.log
+*.pid
+
+# Archive folder (backups and unused files)
+_arsip/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Node modules (if using npm)
+node_modules/
+package-lock.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+dist/
+build/
+
